@@ -1,18 +1,17 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pinput/pinput.dart';
+import 'package:realtime_database_ogabekdev/src/ui/auth/home.dart';
 
 import '../../utils/utils.dart';
-import '../widget/button.dart';
-
 
 class AcceptScreen extends StatefulWidget {
+  final String phone;
 
-  const AcceptScreen({
-    Key? key,
-  }) : super(key: key);
+  AcceptScreen(this.phone);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -22,14 +21,18 @@ class AcceptScreen extends StatefulWidget {
 bool _loading = false;
 
 class _AcceptScreenState extends State<AcceptScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  String? _verificationCode;
+  final FocusNode _pinPutFocusNode = FocusNode();
   final TextEditingController _codeController = TextEditingController();
   bool _isNext = false;
 
   @override
   void initState() {
+    _verifyPhone();
     _codeController.addListener(
           () {
-        if (_codeController.text.length == 4) {
+        if (_codeController.text.length == 6) {
           setState(() {
             _isNext = true;
           });
@@ -92,9 +95,29 @@ class _AcceptScreenState extends State<AcceptScreen> {
                   ),
                 ),
                 Pinput(
-                  length: 5,
-                  keyboardType: TextInputType.number,
-                  controller: _codeController,
+                    length: 6,
+                    keyboardType: TextInputType.number,
+                    controller: _codeController,
+                    onSubmitted: (pin) async {
+                      try {
+                        await FirebaseAuth.instance
+                            .signInWithCredential(PhoneAuthProvider.credential(
+                            verificationId: _verificationCode!, smsCode: pin))
+                            .then((value) async {
+                          if (value.user != null) {
+                            Navigator.pushAndRemoveUntil(context,
+                                MaterialPageRoute(builder: (context) => Home()),
+                                    (route) => false);
+                          }
+                        },);
+                      }
+                       catch (e){
+                        FocusScope.of(context).unfocus();
+                        // _scaffoldKey.currentState.showBodyScrim(value, opacity)
+                       }
+                    }
+
+
                 )
               ],
             ),
@@ -102,19 +125,49 @@ class _AcceptScreenState extends State<AcceptScreen> {
           const SizedBox(
             height: 13,
           ),
-          ButtonWidget(
-            width: 343 * w,
-            margin: EdgeInsets.only(
-                left: 16 * h, right: 16 * h, bottom: Platform.isIOS ? 32 : 24),
-            height: 54,
-            loading: _loading,
-            color: _isNext ? Colors.blueAccent : Colors.grey,
-            text: 'Tasdiqlash',
-            onTap: () async {}
-
-          ),
+          // ButtonWidget(
+          //   width: 343 * w,
+          //   margin: EdgeInsets.only(
+          //       left: 16 * h, right: 16 * h, bottom: Platform.isIOS ? 32 : 24),
+          //   height: 54,
+          //   loading: _loading,
+          //   color: _isNext ? Colors.blueAccent : Colors.grey,
+          //   text: 'Tasdiqlash',
+          //   onTap: () async {
+          //
+          //
+          //
+          //   },
+          // ),
         ],
       ),
+    );
+  }
+
+  _verifyPhone() async {
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: widget.phone,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await FirebaseAuth.instance
+            .signInWithCredential(credential)
+            .then((value) async {
+          if (value.user != null) {
+            print('user logged in');
+          }
+        });
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        print(e.message);
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        setState(
+              () {
+            _verificationCode = verificationId;
+          },
+        );
+      },
+      timeout: const Duration(seconds: 60),
+      codeAutoRetrievalTimeout: (String verificationId) {},
     );
   }
 }

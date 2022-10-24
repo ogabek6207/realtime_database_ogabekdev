@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:realtime_database_ogabekdev/src/ui/auth/accept_screen.dart';
+import 'package:realtime_database_ogabekdev/src/ui/auth/otp.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -56,14 +58,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 color: Theme.of(context).primaryColor,
                 textColor: Colors.white,
                 onPressed: () async {
-                  await FirebaseAuth.instance.verifyPhoneNumber(
-                    phoneNumber: phone,
-                    verificationCompleted: (PhoneAuthCredential credential) {},
-                    verificationFailed: (FirebaseAuthException e) {},
-                    codeSent: (String verificationId, int? resendToken) {},
-                    codeAutoRetrievalTimeout: (String verificationId) {},
-                  );
+                  // await FirebaseAuth.instance.verifyPhoneNumber(
+                  //   phoneNumber: phone,
+                  //   verificationCompleted: (PhoneAuthCredential credential) {},
+                  //   verificationFailed: (FirebaseAuthException e) {},
+                  //   codeSent: (String verificationId, int? resendToken) {},
+                  //   codeAutoRetrievalTimeout: (String verificationId) {},
+                  // );
                   // _formKey.currentState?.validate();
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AcceptScreen(phone),
+                     ),
+                  );
                 },
                 child: const Text('Submit'),
               ),
