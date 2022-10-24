@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:realtime_database_ogabekdev/src/ui/auth/accept_screen.dart';
-import 'src/ui/home_screen/home_screen.dart';
+import 'src/ui/auth/register_screen.dart';
 
 
 void main() async {
@@ -14,6 +13,7 @@ class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyAppState createState() => _MyAppState();
 }
 
@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primaryColor: Colors.greenAccent[700],
       ),
-      home:  AcceptScreen(),
+      home: const RegisterScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

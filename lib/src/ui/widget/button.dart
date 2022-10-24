@@ -24,7 +24,6 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double w = Utils.getWidth(context);
     double h = Utils.getHeight(context);
     return GestureDetector(
       onTap: onTap,

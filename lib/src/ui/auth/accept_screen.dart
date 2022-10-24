@@ -10,11 +10,12 @@ import '../widget/button.dart';
 
 class AcceptScreen extends StatefulWidget {
 
-  AcceptScreen({
+  const AcceptScreen({
     Key? key,
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _AcceptScreenState createState() => _AcceptScreenState();
 }
 

@@ -8,6 +8,7 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomeScreenState createState() => _HomeScreenState();
 }
 
@@ -15,8 +16,11 @@ class _HomeScreenState extends State<HomeScreen> {
   final fb = FirebaseDatabase.instance;
   final TextEditingController _controllerTitle = TextEditingController();
   final TextEditingController _controllerSubtitle = TextEditingController();
+  // ignore: prefer_typing_uninitialized_variables
   var l;
+  // ignore: prefer_typing_uninitialized_variables
   var g;
+  // ignore: prefer_typing_uninitialized_variables
   var k;
 
   @override
