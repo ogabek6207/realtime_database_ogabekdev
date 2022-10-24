@@ -13,6 +13,8 @@ class AppColor {
   static const Color drop = Color(0xFF939393);
   static const Color blue = Color(0xFF327FEB);
   static const Color shadow = Color(0xFF645757);
+  static const Color defaultColor = Color(0xFFE5E5E5);
+  static const Color darkGrey = Color(0xFF616161);
 
 
   ///fonts

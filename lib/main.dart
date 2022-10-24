@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'src/ui/auth/forgot_password_screen.dart';
 import 'src/ui/auth/login_screen.dart';
+import 'src/ui/auth/sign_up_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         platform: TargetPlatform.iOS,
       ),
-      home: const LoginScreen(),
+      home: const ForgotPasswordScreen(),
       debugShowCheckedModeBanner: false,
       color: Colors.indigo[900],
     );

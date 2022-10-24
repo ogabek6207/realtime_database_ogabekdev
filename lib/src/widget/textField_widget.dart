@@ -24,7 +24,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     double w = Utils.getWidth(context);
     return Container(
       padding: EdgeInsets.only(
-          left: 20 * w, right: 20 * w, top: 10 * h, bottom: 10 * h),
+          left: 20 * w, right: 20 * w, top: 6  * h, bottom: 6 * h),
       margin: EdgeInsets.only(top: 16 * h),
       decoration: BoxDecoration(
         boxShadow: [
@@ -50,5 +50,8 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         ),
       ),
     );
+
+
+
   }
 }
