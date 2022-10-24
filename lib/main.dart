@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'src/ui/auth/code_verification_screen.dart';
 import 'src/ui/auth/forgot_password_screen.dart';
 import 'src/ui/auth/login_screen.dart';
 import 'src/ui/auth/sign_up_screen.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         platform: TargetPlatform.iOS,
       ),
-      home: const ForgotPasswordScreen(),
+      home: const CodeVerificationScreen(),
       debugShowCheckedModeBanner: false,
       color: Colors.indigo[900],
     );

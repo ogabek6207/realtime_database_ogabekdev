@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:pinput/pinput.dart';
+
 import '../../color/app_color.dart';
 import '../../utils/utils.dart';
-import '../../widget/label_widget.dart';
+import '../../widget/done_widget.dart';
 import '../../widget/textField_widget.dart';
 
-class ForgotPasswordScreen extends StatefulWidget {
-  const ForgotPasswordScreen({Key? key}) : super(key: key);
+class CodeVerificationScreen extends StatefulWidget {
+  const CodeVerificationScreen({Key? key}) : super(key: key);
 
   @override
-  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
+  State<CodeVerificationScreen> createState() => _CodeVerificationScreenState();
 }
 
-class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  TextEditingController _controller = TextEditingController();
+class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
+  TextEditingController _pinPutController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           ),
         ),
         title: Text(
-          "Forgot Password",
+          "Code Verification",
           style: TextStyle(
             fontFamily: AppColor.fontFamilyNunitoSans,
             fontWeight: FontWeight.w700,
@@ -56,7 +57,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             height: 50 * h,
           ),
           Text(
-            "Enter your email for the verification proccess, and we will send 4 digits code to your email for the verification.",
+            "Enter the 4 digits code that you received on your email so you can continue to reset your account password.",
             style: TextStyle(
               fontFamily: AppColor.fontFamilyNunitoSans,
               fontWeight: FontWeight.w400,
@@ -68,12 +69,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           SizedBox(
             height: 52 * h,
           ),
-          LabelWidget(
-            title: "Email",
-          ),
-          TextFieldWidget(
-            hintText: 'Enter your email',
-            controller: _controller,
+          Pinput(
+            length: 6,
+            keyboardType: TextInputType.number,
+            controller: _pinPutController,
           ),
           SizedBox(
             height: 44 * h,
