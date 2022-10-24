@@ -121,7 +121,7 @@ class _AcceptScreenState extends State<AcceptScreen> {
                     if (value.user != null) {
                       Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => const Home()),
+                          MaterialPageRoute(builder: (context) => const HomeScreen()),
                           (route) => false);
                     }
                   },

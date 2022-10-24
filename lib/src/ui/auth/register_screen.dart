@@ -86,7 +86,7 @@ if (kDebugMode) {
             if (value.user != null) {
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(builder: (context) => Home()),
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
                   (route) => false);
             }
           });
