@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:realtime_database_ogabekdev/src/ui/auth/accept_screen.dart';
-import 'package:realtime_database_ogabekdev/src/ui/auth/otp.dart';
+
+import 'home.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -14,7 +14,8 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
-  var phone = "";
+  final TextEditingController _controller = TextEditingController();
+  String _verificationCode = "";
 
   @override
   Widget build(BuildContext context) {
@@ -32,46 +33,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(
                 height: 10,
               ),
-              IntlPhoneField(
-                decoration: const InputDecoration(
-                  labelText: 'Phone Number',
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(),
+              Container(
+                margin: const EdgeInsets.only(top: 40, right: 10, left: 10),
+                child: TextField(
+                  decoration: const InputDecoration(
+                    hintText: 'Phone Number',
+                    prefix: Padding(
+                      padding: EdgeInsets.all(4),
+                      child: Text('+998'),
+                    ),
                   ),
+                  maxLength: 9,
+                  keyboardType: TextInputType.number,
+                  controller: _controller,
                 ),
-                onChanged: (value) {
-                  phone = value.toString();
-                  if (kDebugMode) {
-                    print(value.completeNumber);
-                  }
-                },
-                onCountryChanged: (country) {
-                  if (kDebugMode) {
-                    print('Country changed to: ${country.name}');
-                  }
-                },
               ),
-              const SizedBox(
+
+               const SizedBox(
                 height: 10,
               ),
               MaterialButton(
                 color: Theme.of(context).primaryColor,
                 textColor: Colors.white,
                 onPressed: () async {
-                  // await FirebaseAuth.instance.verifyPhoneNumber(
-                  //   phoneNumber: phone,
-                  //   verificationCompleted: (PhoneAuthCredential credential) {},
-                  //   verificationFailed: (FirebaseAuthException e) {},
-                  //   codeSent: (String verificationId, int? resendToken) {},
-                  //   codeAutoRetrievalTimeout: (String verificationId) {},
-                  // );
-                  // _formKey.currentState?.validate();
-
-                  Navigator.push(
+                  _verifyPhone(_controller.text);
+                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AcceptScreen(phone),
-                     ),
+                      builder: (context) => AcceptScreen( phone: _controller.text, verificationCode: _verificationCode,),
+                    ),
                   );
                 },
                 child: const Text('Submit'),
@@ -81,5 +71,41 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
     );
+  }
+
+  _verifyPhone(String phone) async {
+if (kDebugMode) {
+  print(phone);
+}
+    await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: '+998$phone',
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          await FirebaseAuth.instance
+              .signInWithCredential(credential)
+              .then((value) async {
+            if (value.user != null) {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home()),
+                  (route) => false);
+            }
+          });
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          if (kDebugMode) {
+            print(e.message);
+          }
+        },
+        codeSent: (String? verficationID, int? resendToken) {
+          setState(() {
+            _verificationCode = verficationID!;
+          });
+        },
+        codeAutoRetrievalTimeout: (String verificationID) {
+          setState(() {
+            _verificationCode = verificationID;
+          });
+        },
+        timeout: const Duration(seconds: 120));
   }
 }
