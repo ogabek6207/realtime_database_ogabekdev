@@ -14,6 +14,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        platform: TargetPlatform.iOS,
+      ),
       home: const LoginScreen(),
       debugShowCheckedModeBanner: false,
       color: Colors.indigo[900],
