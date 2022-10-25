@@ -153,6 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           DoneWidget(
             title: 'Login',
+
             onTap: () {},
           ),
           SizedBox(
