@@ -15,7 +15,7 @@ class CodeVerificationScreen extends StatefulWidget {
 }
 
 class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
-  TextEditingController _pinPutController = TextEditingController();
+  final TextEditingController _pinPutController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
