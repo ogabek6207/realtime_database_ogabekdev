@@ -59,7 +59,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     );
                   },
-                  child: DoneWidget(title: "Submit")),
+                  child: DoneWidget(title: "Submit", onTap: (){},)),
             ],
           ),
         ),

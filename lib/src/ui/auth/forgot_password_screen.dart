@@ -78,7 +78,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           SizedBox(
             height: 44 * h,
           ),
-          DoneWidget(title: "Continue"),
+          DoneWidget(title: "Continue", onTap: (){},),
         ],
       ),
     );

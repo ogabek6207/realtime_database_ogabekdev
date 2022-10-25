@@ -125,8 +125,13 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               const Spacer(),
               GestureDetector(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen(),),);
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RegisterScreen(),
+                    ),
+                  );
                 },
                 child: Container(
                   color: Colors.transparent,
@@ -148,6 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           DoneWidget(
             title: 'Login',
+            onTap: () {},
           ),
           SizedBox(
             height: 20 * h,

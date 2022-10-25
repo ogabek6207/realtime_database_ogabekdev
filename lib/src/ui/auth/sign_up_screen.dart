@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
+import 'package:realtime_database_ogabekdev/src/model/user_model.dart';
 import 'package:realtime_database_ogabekdev/src/ui/auth/login_screen.dart';
 import 'package:realtime_database_ogabekdev/src/utils/utils.dart';
 import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';
@@ -20,7 +22,8 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _controllerPhoneNumber = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
-  final TextEditingController _controllerPasswordAgain = TextEditingController();
+  final TextEditingController _controllerPasswordAgain =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +49,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     GestureDetector(
                       onTap: () {
                         Navigator.pushReplacement(
-                            context, PageTransition(type: PageTransitionType.fade, child: LoginScreen())
-                        );
+                            context,
+                            PageTransition(
+                                type: PageTransitionType.fade,
+                                child: LoginScreen()));
                       },
                       child: Column(
                         children: [
@@ -104,7 +109,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
             title: "PhoneNumber",
           ),
           PhoneNumberWidget(controller: _controllerPhoneNumber),
-
           SizedBox(
             height: 36 * h,
           ),
@@ -130,9 +134,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
           DoneWidget(
             title: 'Sign Up',
+            onTap: () {
+              final user = UserModel(
+                phoneNumber: _controllerPhoneNumber.text,
+                password: _controllerPassword.text,
+              );
+              createUser(user);
+            },
           ),
         ],
       ),
     );
+  }
+
+  Future createUser(UserModel user) async {
+    final docUser =
+        FirebaseFirestore.instance.collection('users').doc(user.phoneNumber);
+    user.id = docUser.id;
+    await docUser.set(user.toJson());
   }
 }
