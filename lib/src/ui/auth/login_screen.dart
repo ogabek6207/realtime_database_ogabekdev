@@ -15,7 +15,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _controllerEmail = TextEditingController();
+  final TextEditingController _controllerPhone = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
 
   @override
@@ -88,11 +88,42 @@ class _LoginScreenState extends State<LoginScreen> {
             height: 40 * h,
           ),
           LabelWidget(
-            title: "Username or Email",
+            title: "Phone Number",
           ),
-          TextFieldWidget(
-            hintText: 'Enter your username or email',
-            controller: _controllerEmail,
+          Container(
+            padding: EdgeInsets.only(
+                left: 20 * w, right: 20 * w, top: 6 * h, bottom: 6 * h),
+            margin: EdgeInsets.only(top: 16 * h),
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  spreadRadius: 0,
+                  blurRadius: 75,
+                  offset: Offset(0, 10 * w),
+                  color: AppColor.drop.withOpacity(0.1),
+                )
+              ],
+              color: AppColor.white,
+              borderRadius: BorderRadius.circular(28),
+            ),
+            child: Center(
+              child: TextField(
+                maxLength: 9,
+                controller: _controllerPhone,
+                decoration: InputDecoration(
+                  counterText: "",
+                  prefix: const Padding(
+                    padding: EdgeInsets.all(4),
+                    child: Text('+998'),
+                  ),
+                  border: InputBorder.none,
+                  hintText: "Enter your phone number",
+                  hintStyle: TextStyle(
+                    color: AppColor.grey.withOpacity(0.8),
+                  ),
+                ),
+              ),
+            ),
           ),
           SizedBox(
             height: 36 * h,

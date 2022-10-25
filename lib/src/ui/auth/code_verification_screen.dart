@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pinput/pinput.dart';
-
 import '../../color/app_color.dart';
 import '../../utils/utils.dart';
 import '../../widget/done_widget.dart';
-import '../../widget/textField_widget.dart';
 
 class CodeVerificationScreen extends StatefulWidget {
   const CodeVerificationScreen({Key? key}) : super(key: key);
