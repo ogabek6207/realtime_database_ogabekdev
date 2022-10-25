@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'src/ui/auth/code_verification_screen.dart';
 import 'src/ui/auth/forgot_password_screen.dart';
 import 'src/ui/auth/login_screen.dart';
+import 'src/ui/auth/register_screen.dart';
 import 'src/ui/auth/sign_up_screen.dart';
 
 void main() async {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         platform: TargetPlatform.iOS,
       ),
-      home: const LoginScreen(),
+      home: const PhoneNumberScreen(),
       debugShowCheckedModeBanner: false,
       color: Colors.indigo[900],
     );

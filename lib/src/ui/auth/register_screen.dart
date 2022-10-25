@@ -9,14 +9,14 @@ import '../../widget/leading_widget.dart';
 import '../../widget/phone_number_widget.dart';
 import 'home.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+class PhoneNumberScreen extends StatefulWidget {
+  const PhoneNumberScreen({Key? key}) : super(key: key);
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<PhoneNumberScreen> createState() => _PhoneNumberScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final TextEditingController _controller = TextEditingController();
   String _verificationCode = "";

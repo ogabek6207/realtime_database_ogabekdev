@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
@@ -30,6 +31,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     double h = Utils.getHeight(context);
     double w = Utils.getWidth(context);
@@ -142,7 +144,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 phone: _controllerPhoneNumber.text,
                 password: _controllerPassword.text,
               );
-              createUser(user);
+              if (_controllerPassword.text == _controllerPasswordAgain.text) {
+                createUser(user);
+              } else {
+                print("xato");
+              }
             },
             child: DoneWidget(
               title: 'Sign Up',
@@ -151,6 +157,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ],
       ),
     );
+  }
+
+  Future checkUser() async {
+    FirebaseFirestore.instance.collection('users').withConverter<UserModel>(
+          fromFirestore: (snapshots, _) =>
+              UserModel.fromJson(snapshots.data()!),
+          toFirestore: (movie, _) => movie.toJson(),
+        );
   }
 
   Future createUser(UserModel user) async {

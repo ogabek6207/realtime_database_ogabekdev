@@ -110,6 +110,7 @@ class _AcceptScreenState extends State<AcceptScreen> {
             color: _isNext ? Colors.blueAccent : Colors.grey,
             text: 'Tasdiqlash',
             onTap: () async {
+              print(widget.verificationCode);
               try {
                 await FirebaseAuth.instance
                     .signInWithCredential(
