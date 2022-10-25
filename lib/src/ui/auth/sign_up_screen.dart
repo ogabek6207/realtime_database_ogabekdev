@@ -26,6 +26,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
       TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     double h = Utils.getHeight(context);
     double w = Utils.getWidth(context);
@@ -132,15 +136,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
           SizedBox(
             height: 50 * h,
           ),
-          DoneWidget(
-            title: 'Sign Up',
+          GestureDetector(
             onTap: () {
               final user = UserModel(
-                phoneNumber: _controllerPhoneNumber.text,
+                phone: _controllerPhoneNumber.text,
                 password: _controllerPassword.text,
               );
               createUser(user);
             },
+            child: DoneWidget(
+              title: 'Sign Up',
+            ),
           ),
         ],
       ),
@@ -149,8 +155,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   Future createUser(UserModel user) async {
     final docUser =
-        FirebaseFirestore.instance.collection('users').doc(user.phoneNumber);
+        FirebaseFirestore.instance.collection('users').doc(user.phone);
     user.id = docUser.id;
     await docUser.set(user.toJson());
+    print("Done");
   }
 }

@@ -1,23 +1,23 @@
 class UserModel {
   String id;
-  final String phoneNumber;
+  final String phone;
   final String password;
 
   UserModel({
     this.id = '',
-    required this.phoneNumber,
+    required this.phone,
     required this.password,
   });
 
   static UserModel fromJson(Map<String, dynamic> json) => UserModel(
         id: json['id'] ?? "",
-        phoneNumber: json['name'] ?? "",
+        phone: json['phone'] ?? "",
         password: json['password'] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
         'id': id,
-        'name': phoneNumber,
+        'phone': phone,
         'password': password,
       };
 }

@@ -4,12 +4,10 @@ import '../color/app_color.dart';
 import '../utils/utils.dart';
 
 class DoneWidget extends StatefulWidget {
-  Function onTap;
   String title;
 
   DoneWidget({
     required this.title,
-    required this.onTap,
   });
 
   @override

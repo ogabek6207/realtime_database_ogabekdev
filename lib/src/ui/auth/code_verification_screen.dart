@@ -75,7 +75,7 @@ class _CodeVerificationScreenState extends State<CodeVerificationScreen> {
           SizedBox(
             height: 44 * h,
           ),
-          DoneWidget(title: "Continue", onTap: (){},),
+          DoneWidget(title: "Continue", ),
         ],
       ),
     );
