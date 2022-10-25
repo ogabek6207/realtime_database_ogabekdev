@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
+import 'package:realtime_database_ogabekdev/src/ui/auth/register_screen.dart';
 import 'package:realtime_database_ogabekdev/src/ui/auth/sign_up_screen.dart';
 import 'package:realtime_database_ogabekdev/src/utils/utils.dart';
 import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';
@@ -104,7 +105,9 @@ class _LoginScreenState extends State<LoginScreen> {
           LabelWidget(
             title: "Phone Number",
           ),
-         PhoneNumberWidget(controller: _controllerPhone),
+          PhoneNumberWidget(
+            controller: _controllerPhone,
+          ),
           SizedBox(
             height: 36 * h,
           ),
@@ -121,15 +124,20 @@ class _LoginScreenState extends State<LoginScreen> {
           Row(
             children: [
               const Spacer(),
-              Container(
-                color: Colors.transparent,
-                child: Text(
-                  "Forgot Password?",
-                  style: TextStyle(
-                    fontFamily: AppColor.fontFamilyNunitoSans,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 14 * h,
-                    color: AppColor.dark.withOpacity(0.8),
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen(),),);
+                },
+                child: Container(
+                  color: Colors.transparent,
+                  child: Text(
+                    "Forgot Password?",
+                    style: TextStyle(
+                      fontFamily: AppColor.fontFamilyNunitoSans,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14 * h,
+                      color: AppColor.dark.withOpacity(0.8),
+                    ),
                   ),
                 ),
               ),
