@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
+import 'package:realtime_database_ogabekdev/src/ui/auth/sign_up_screen.dart';
 
 import '../../utils/utils.dart';
 import '../widget/button.dart';
@@ -121,7 +122,7 @@ class _AcceptScreenState extends State<AcceptScreen> {
                     if (value.user != null) {
                       Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => const HomeScreen()),
+                          MaterialPageRoute(builder: (context) => const SignUpScreen()),
                           (route) => false);
                     }
                   },

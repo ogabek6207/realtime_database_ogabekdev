@@ -5,6 +5,7 @@ import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
 import 'package:realtime_database_ogabekdev/src/ui/auth/accept_screen.dart';
 import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';
 import '../../widget/appBar_title_widget.dart';
+import '../../widget/leading_widget.dart';
 import '../../widget/phone_number_widget.dart';
 import 'home.dart';
 
@@ -25,17 +26,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       backgroundColor: AppColor.defaultColor,
       appBar: AppBar(
+        leading: LeadingWidget(),
         backgroundColor: AppColor.defaultColor,
         elevation: 0,
-        title: AppBarTitleWidget(),
+        title: const AppBarTitleWidget(),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Form(
           key: _formKey,
           child: Column(
-            crossAxisAlignment:
-            CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
                 height: 10,
