@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
+import 'package:realtime_database_ogabekdev/src/ui/auth/login_screen.dart';
 import 'package:realtime_database_ogabekdev/src/utils/utils.dart';
 import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/label_widget.dart';
@@ -39,24 +41,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 width: 233 * h,
                 child: Row(
                   children: [
-                    Column(
-                      children: [
-                        Text(
-                          'Log In',
-                          style: TextStyle(
-                            fontFamily: AppColor.fontFamilyNunitoSans,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20 * h,
-                            color: AppColor.grey,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context, PageTransition(type: PageTransitionType.fade, child: LoginScreen())
+                        );
+                      },
+                      child: Column(
+                        children: [
+                          Text(
+                            'Log In',
+                            style: TextStyle(
+                              fontFamily: AppColor.fontFamilyNunitoSans,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20 * h,
+                              color: AppColor.grey,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 4 * h,
-                        ),
-                        SvgPicture.asset('assets/icons/divider.svg',
-
-                        color: AppColor.white,),
-                      ],
+                          SizedBox(
+                            height: 4 * h,
+                          ),
+                          SvgPicture.asset(
+                            'assets/icons/divider.svg',
+                            color: AppColor.white,
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       width: 46 * w,
@@ -105,7 +115,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             hintText: 'Enter your email',
             controller: _controllerPassword,
           ),
-          SizedBox(height: 36*h,),
+          SizedBox(
+            height: 36 * h,
+          ),
           LabelWidget(
             title: "Password",
           ),
@@ -119,7 +131,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           DoneWidget(
             title: 'Sign Up',
           ),
-
         ],
       ),
     );

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
+import 'package:realtime_database_ogabekdev/src/ui/auth/sign_up_screen.dart';
 import 'package:realtime_database_ogabekdev/src/utils/utils.dart';
 import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/label_widget.dart';
@@ -59,25 +61,36 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       width: 46 * w,
                     ),
-                    Column(
-                      children: [
-                        Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            fontFamily: AppColor.fontFamilyNunitoSans,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20 * h,
-                            color: AppColor.grey,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: SignUpScreen(),
                           ),
-                        ),
-                        SizedBox(
-                          height: 4 * h,
-                        ),
-                        SvgPicture.asset(
-                          'assets/icons/divider.svg',
-                          color: AppColor.white,
-                        ),
-                      ],
+                        );
+                      },
+                      child: Column(
+                        children: [
+                          Text(
+                            'Sign Up',
+                            style: TextStyle(
+                              fontFamily: AppColor.fontFamilyNunitoSans,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20 * h,
+                              color: AppColor.grey,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 4 * h,
+                          ),
+                          SvgPicture.asset(
+                            'assets/icons/divider.svg',
+                            color: AppColor.white,
+                          ),
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -208,7 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 BoxShadow(
                   blurRadius: 75,
                   spreadRadius: 0,
-                  offset: Offset(0, 6),
+                  offset: const Offset(0, 6),
                   color: AppColor.shadow.withOpacity(0.15),
                 )
               ],
