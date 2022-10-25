@@ -6,6 +6,7 @@ import 'package:realtime_database_ogabekdev/src/ui/auth/login_screen.dart';
 import 'package:realtime_database_ogabekdev/src/utils/utils.dart';
 import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/label_widget.dart';
+import 'package:realtime_database_ogabekdev/src/widget/phone_number_widget.dart';
 
 import '../../widget/textField_widget.dart';
 
@@ -17,8 +18,9 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final TextEditingController _controllerEmail = TextEditingController();
+  final TextEditingController _controllerPhoneNumber = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
+  final TextEditingController _controllerPasswordAgain = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -99,22 +101,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
             height: 40 * h,
           ),
           LabelWidget(
-            title: "Username",
+            title: "PhoneNumber",
           ),
-          TextFieldWidget(
-            hintText: 'Create your username',
-            controller: _controllerEmail,
-          ),
-          SizedBox(
-            height: 36 * h,
-          ),
-          LabelWidget(
-            title: "Email",
-          ),
-          TextFieldWidget(
-            hintText: 'Enter your email',
-            controller: _controllerPassword,
-          ),
+          PhoneNumberWidget(controller: _controllerPhoneNumber),
+
           SizedBox(
             height: 36 * h,
           ),
@@ -124,6 +114,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
           TextFieldWidget(
             hintText: 'Create your password',
             controller: _controllerPassword,
+          ),
+          SizedBox(
+            height: 36 * h,
+          ),
+          LabelWidget(
+            title: "Password Again",
+          ),
+          TextFieldWidget(
+            hintText: 'Create your password',
+            controller: _controllerPasswordAgain,
           ),
           SizedBox(
             height: 50 * h,

@@ -6,6 +6,7 @@ import 'package:realtime_database_ogabekdev/src/ui/auth/sign_up_screen.dart';
 import 'package:realtime_database_ogabekdev/src/utils/utils.dart';
 import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/label_widget.dart';
+import 'package:realtime_database_ogabekdev/src/widget/phone_number_widget.dart';
 
 import '../../widget/textField_widget.dart';
 
@@ -103,41 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
           LabelWidget(
             title: "Phone Number",
           ),
-          Container(
-            padding: EdgeInsets.only(
-                left: 20 * w, right: 20 * w, top: 6 * h, bottom: 6 * h),
-            margin: EdgeInsets.only(top: 16 * h),
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  spreadRadius: 0,
-                  blurRadius: 75,
-                  offset: Offset(0, 10 * w),
-                  color: AppColor.drop.withOpacity(0.1),
-                )
-              ],
-              color: AppColor.white,
-              borderRadius: BorderRadius.circular(28),
-            ),
-            child: Center(
-              child: TextField(
-                maxLength: 9,
-                controller: _controllerPhone,
-                decoration: InputDecoration(
-                  counterText: "",
-                  prefix: const Padding(
-                    padding: EdgeInsets.all(4),
-                    child: Text('+998'),
-                  ),
-                  border: InputBorder.none,
-                  hintText: "Enter your phone number",
-                  hintStyle: TextStyle(
-                    color: AppColor.grey.withOpacity(0.8),
-                  ),
-                ),
-              ),
-            ),
-          ),
+         PhoneNumberWidget(controller: _controllerPhone),
           SizedBox(
             height: 36 * h,
           ),
