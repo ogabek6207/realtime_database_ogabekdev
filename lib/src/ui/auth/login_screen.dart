@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
-import 'package:realtime_database_ogabekdev/src/ui/auth/register_screen.dart';
+import 'package:realtime_database_ogabekdev/src/ui/auth/phone_number_screen.dart';
 import 'package:realtime_database_ogabekdev/src/ui/auth/sign_up_screen.dart';
 import 'package:realtime_database_ogabekdev/src/utils/utils.dart';
 import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';

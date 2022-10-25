@@ -24,9 +24,8 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _controllerPhoneNumber = TextEditingController();
+  final TextEditingController _controllerUserName = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
-  final TextEditingController _controllerPasswordAgain =
-  TextEditingController();
 
   @override
   void initState() {
@@ -121,6 +120,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
             height: 36 * h,
           ),
           LabelWidget(
+            title: "UserName",
+          ),
+          TextFieldWidget(
+            hintText: 'Create your username',
+            controller: _controllerUserName,
+          ),
+          SizedBox(
+            height: 36 * h,
+          ),
+          LabelWidget(
             title: "Password",
           ),
           TextFieldWidget(
@@ -128,31 +137,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
             controller: _controllerPassword,
           ),
           SizedBox(
-            height: 36 * h,
-          ),
-          LabelWidget(
-            title: "Password Again",
-          ),
-          TextFieldWidget(
-            hintText: 'Create your password',
-            controller: _controllerPasswordAgain,
-          ),
-          SizedBox(
             height: 50 * h,
           ),
           GestureDetector(
             onTap: () {
               final user = UserModel(
-                phone: _controllerPhoneNumber.text,
+                phone: "+998${_controllerPhoneNumber.text}",
+                name: _controllerUserName.text,
                 password: _controllerPassword.text,
               );
-              if (_controllerPassword.text == _controllerPasswordAgain.text) {
-                createUser(user);
-              } else {
-                print("xato");
-              }
+              createUser(user);
+
               Navigator.push(
-                context, MaterialPageRoute(builder: (context) => AllUserScreen(password: _controllerPassword.text,)),);
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AllUserScreen(
+                    password: _controllerUserName.text,
+                  ),
+                ),
+              );
             },
             child: DoneWidget(
               title: 'Sign Up',
@@ -163,10 +166,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-
   Future createUser(UserModel user) async {
     final docUser =
-    FirebaseFirestore.instance.collection('users').doc(user.phone);
+        FirebaseFirestore.instance.collection('users').doc(user.phone);
     user.id = docUser.id;
     await docUser.set(user.toJson());
     print("Done");
