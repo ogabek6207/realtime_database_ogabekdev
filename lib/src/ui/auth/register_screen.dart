@@ -29,7 +29,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
         leading: LeadingWidget(),
         backgroundColor: AppColor.defaultColor,
         elevation: 0,
-        title: const AppBarTitleWidget(),
+        title:  AppBarTitleWidget("Accept"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -74,34 +74,37 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
       print(phone);
     }
     await FirebaseAuth.instance.verifyPhoneNumber(
-        phoneNumber: '+998$phone',
-        verificationCompleted: (PhoneAuthCredential credential) async {
-          await FirebaseAuth.instance
-              .signInWithCredential(credential)
-              .then((value) async {
-            if (value.user != null) {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
-                  (route) => false);
-            }
-          });
-        },
-        verificationFailed: (FirebaseAuthException e) {
-          if (kDebugMode) {
-            print(e.message);
+      phoneNumber: '+998$phone',
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await FirebaseAuth.instance
+            .signInWithCredential(credential)
+            .then((value) async {
+          if (value.user != null) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()),
+                (route) => false);
           }
-        },
-        codeSent: (String? verficationID, int? resendToken) {
-          setState(() {
-            _verificationCode = verficationID!;
-          });
-        },
-        codeAutoRetrievalTimeout: (String verificationID) {
-          setState(() {
+        });
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        if (kDebugMode) {
+          print(e.message);
+        }
+      },
+      codeSent: (String? verficationID, int? resendToken) {
+        setState(() {
+          _verificationCode = verficationID!;
+        });
+      },
+      codeAutoRetrievalTimeout: (String verificationID) {
+        setState(
+          () {
             _verificationCode = verificationID;
-          });
-        },
-        timeout: const Duration(seconds: 120));
+          },
+        );
+      },
+      timeout: const Duration(seconds: 120),
+    );
   }
 }

@@ -5,6 +5,7 @@ import 'src/ui/auth/forgot_password_screen.dart';
 import 'src/ui/auth/login_screen.dart';
 import 'src/ui/auth/register_screen.dart';
 import 'src/ui/auth/sign_up_screen.dart';
+import 'src/ui/home_screen/all_user_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         platform: TargetPlatform.iOS,
       ),
-      home: const PhoneNumberScreen(),
+      home:  SignUpScreen(),
       debugShowCheckedModeBanner: false,
       color: Colors.indigo[900],
     );

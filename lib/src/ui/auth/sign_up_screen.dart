@@ -5,7 +5,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
 import 'package:realtime_database_ogabekdev/src/model/user_model.dart';
+import 'package:realtime_database_ogabekdev/src/ui/auth/home.dart';
 import 'package:realtime_database_ogabekdev/src/ui/auth/login_screen.dart';
+import 'package:realtime_database_ogabekdev/src/ui/home_screen/all_user_screen.dart';
 import 'package:realtime_database_ogabekdev/src/utils/utils.dart';
 import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/label_widget.dart';
@@ -24,7 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _controllerPhoneNumber = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
   final TextEditingController _controllerPasswordAgain =
-      TextEditingController();
+  TextEditingController();
 
   @override
   void initState() {
@@ -149,6 +151,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               } else {
                 print("xato");
               }
+              Navigator.push(
+                context, MaterialPageRoute(builder: (context) => AllUserScreen(password: _controllerPassword.text,)),);
             },
             child: DoneWidget(
               title: 'Sign Up',
@@ -159,17 +163,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Future checkUser() async {
-    FirebaseFirestore.instance.collection('users').withConverter<UserModel>(
-          fromFirestore: (snapshots, _) =>
-              UserModel.fromJson(snapshots.data()!),
-          toFirestore: (movie, _) => movie.toJson(),
-        );
-  }
 
   Future createUser(UserModel user) async {
     final docUser =
-        FirebaseFirestore.instance.collection('users').doc(user.phone);
+    FirebaseFirestore.instance.collection('users').doc(user.phone);
     user.id = docUser.id;
     await docUser.set(user.toJson());
     print("Done");
