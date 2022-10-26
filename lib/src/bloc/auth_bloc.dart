@@ -41,8 +41,8 @@ class AuthBloc {
         phone: phone,
         name: name,
         password: password,
-        createAt: DateTime.now(),
-        updateAt: DateTime.now(),
+        // createAt: DateTime.now(),
+        // updateAt: DateTime.now(),
       ),
     );
     SharedPreferences prefs = await SharedPreferences.getInstance();

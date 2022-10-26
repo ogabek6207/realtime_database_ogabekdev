@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:realtime_database_ogabekdev/src/ui/home_screen/all_user_screen.dart';
-
 import '../color/app_color.dart';
 import '../utils/utils.dart';
 import 'profile_screen.dart';
