@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           context,
                           PageTransition(
                             type: PageTransitionType.fade,
-                            child: SignUpScreen(),
+                            child: const SignUpScreen(),
                           ),
                         );
                       },
@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(
             height: 40 * h,
           ),
-          LabelWidget(
+          const LabelWidget(
             title: "Phone Number",
           ),
           PhoneNumberWidget(
@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(
             height: 36 * h,
           ),
-          LabelWidget(
+          const LabelWidget(
             title: "Password",
           ),
           TextFieldWidget(
@@ -130,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => PhoneNumberScreen(),
+                      builder: (context) => const PhoneNumberScreen(),
                     ),
                   );
                 },

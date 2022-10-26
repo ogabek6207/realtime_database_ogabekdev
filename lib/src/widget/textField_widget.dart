@@ -1,13 +1,13 @@
+
 import 'package:flutter/material.dart';
 import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
-
 import '../utils/utils.dart';
 
 class TextFieldWidget extends StatefulWidget {
   final String hintText;
-  TextEditingController controller;
+  final TextEditingController controller;
 
-  TextFieldWidget({
+  const TextFieldWidget({
     super.key,
     required this.hintText,
     required this.controller,
@@ -26,7 +26,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     double w = Utils.getWidth(context);
     return Container(
       padding: EdgeInsets.only(
-          left: 20 * w, right: 20 * w, top: 6  * h, bottom: 6 * h),
+          left: 20 * w, right: 20 * w, top: 6 * h, bottom: 6 * h),
       margin: EdgeInsets.only(top: 16 * h),
       decoration: BoxDecoration(
         boxShadow: [
@@ -38,13 +38,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           )
         ],
         color: AppColor.white,
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(28 * h),
       ),
       child: Center(
         child: TextField(
           obscuringCharacter: '*',
           obscureText: _eye,
-
           controller: widget.controller,
           style: TextStyle(
             fontFamily: AppColor.fontFamilyNunitoSans,
@@ -53,32 +52,29 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             color: AppColor.dark,
           ),
           decoration: InputDecoration(
-              suffixIcon: GestureDetector(
-                onTap: () {
-                  _eye = !_eye;
-                  setState(() {});
-                },
-                child: _eye
-                    ? const Icon(
-                  Icons.visibility_off,
-                  color: AppColor.blue,
-                )
-                    : const Icon(
-                  Icons.visibility,
-                  color: AppColor.blue,
-                ),
-              ),
-
-              border: InputBorder.none,
-              hintText: widget.hintText,
-              hintStyle: TextStyle(
-                color: AppColor.grey.withOpacity(0.8),
-              )),
+            suffixIcon: GestureDetector(
+              onTap: () {
+                _eye = !_eye;
+                setState(() {});
+              },
+              child: _eye
+                  ? const Icon(
+                      Icons.visibility_off,
+                      color: AppColor.blue,
+                    )
+                  : const Icon(
+                      Icons.visibility,
+                      color: AppColor.blue,
+                    ),
+            ),
+            border: InputBorder.none,
+            hintText: widget.hintText,
+            hintStyle: TextStyle(
+              color: AppColor.grey.withOpacity(0.8),
+            ),
+          ),
         ),
       ),
     );
-
-
-
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:realtime_database_ogabekdev/src/firestore/user_firestore.dart';
 import 'package:realtime_database_ogabekdev/src/model/user_model.dart';
 
@@ -6,7 +7,9 @@ class AuthBloc {
 
   allUsers() async {
     List<UserModel> users = await _userFireStore.getAllUser();
-    print(users.last.id);
+    if (kDebugMode) {
+      print(users.last.id);
+    }
   }
 
   Future<UserModel?> loginUser(String login, String password) async {

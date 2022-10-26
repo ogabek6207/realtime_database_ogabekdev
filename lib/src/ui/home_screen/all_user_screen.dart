@@ -5,9 +5,9 @@ import 'package:realtime_database_ogabekdev/src/widget/appBar_title_widget.dart'
 import '../../model/user_model.dart';
 
 class AllUserScreen extends StatefulWidget {
-  String password;
+ final String password;
 
-  AllUserScreen({required this.password});
+  const AllUserScreen({super.key, required this.password});
 
   @override
   State<AllUserScreen> createState() => _AllUserScreenState();
@@ -21,7 +21,7 @@ class _AllUserScreenState extends State<AllUserScreen> {
       appBar: AppBar(
           elevation: 0,
           backgroundColor: AppColor.defaultColor,
-          title: AppBarTitleWidget("All User")),
+          title: const AppBarTitleWidget("All User")),
       body: StreamBuilder<QuerySnapshot<UserModel>>(
         stream: getUsers.snapshots(),
         builder: (context, snapshot) {
@@ -34,7 +34,6 @@ class _AllUserScreenState extends State<AllUserScreen> {
           if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
           }
-          List<QueryDocumentSnapshot<UserModel>> data1 = [];
           List<QueryDocumentSnapshot<UserModel>> data2 = [];
           final data = snapshot.data!;
 

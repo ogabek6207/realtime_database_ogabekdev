@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:realtime_database_ogabekdev/src/ui/auth/sign_up_screen.dart';
 
 import '../../utils/utils.dart';
 import '../widget/button.dart';
-import 'home.dart';
 
 class AcceptScreen extends StatefulWidget {
   final String phone;
@@ -110,7 +110,9 @@ class _AcceptScreenState extends State<AcceptScreen> {
             color: _isNext ? Colors.blueAccent : Colors.grey,
             text: 'Tasdiqlash',
             onTap: () async {
-              print(widget.verificationCode);
+              if (kDebugMode) {
+                print(widget.verificationCode);
+              }
               try {
                 await FirebaseAuth.instance
                     .signInWithCredential(

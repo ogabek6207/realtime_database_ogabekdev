@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'src/ui/auth/phone_number_screen.dart';
 import 'src/ui/auth/sign_up_screen.dart';
 
 void main() async {
