@@ -24,6 +24,7 @@ dependencies:
   cloud_firestore: ^4.0.2
   rxdart: ^0.27.5
   shared_preferences: ^2.0.15
+  flutter_snake_navigationbar: ^0.6.1
 
 dev_dependencies:
   flutter_test:
@@ -46,4 +47,5 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/menu/
 

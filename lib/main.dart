@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'src/ui/auth/sign_up_screen.dart';
+import 'src/ui/main_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         platform: TargetPlatform.iOS,
       ),
-      home:  const SignUpScreen(),
+      home:  const MainScreen(),
       debugShowCheckedModeBanner: false,
       color: Colors.indigo[900],
     );

@@ -10,6 +10,7 @@ class AuthBloc {
   Stream<List<UserModel>> get fetchUser => userFetch.stream;
 
   allUsers() async {
+
     List<UserModel> users = await _userFireStore.getAllUser();
 
     userFetch.sink.add(users);
