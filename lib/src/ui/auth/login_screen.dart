@@ -3,13 +3,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:realtime_database_ogabekdev/src/bloc/auth_bloc.dart';
 import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
+import 'package:realtime_database_ogabekdev/src/model/user_model.dart';
 import 'package:realtime_database_ogabekdev/src/ui/auth/phone_number_screen.dart';
 import 'package:realtime_database_ogabekdev/src/ui/auth/sign_up_screen.dart';
+import 'package:realtime_database_ogabekdev/src/ui/home_screen/all_user_screen.dart';
 import 'package:realtime_database_ogabekdev/src/utils/utils.dart';
 import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/label_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/phone_number_widget.dart';
-
 import '../../widget/textField_widget.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -154,8 +155,8 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           DoneWidget(
             title: 'Login',
-            onTap: () {
-              authBloc.allUsers();
+            onTap: () async {
+              _getLogin();
             },
           ),
           SizedBox(
@@ -236,5 +237,26 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     );
+  }
+
+  Future<void> _getLogin() async {
+    UserModel? data = await authBloc.loginUser(
+        "+998${_controllerPhone.text}", _controllerPassword.text);
+    data != null
+        // ignore: use_build_context_synchronously
+        ? Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AllUserScreen(
+                password: _controllerPassword.text,
+              ),
+            ),
+          )
+        : print("Error");
+
+    print(authBloc.loginUser(
+      "+998${_controllerPhone.text}",
+      _controllerPassword.text,
+    ));
   }
 }

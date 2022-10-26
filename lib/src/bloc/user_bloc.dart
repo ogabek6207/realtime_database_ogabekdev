@@ -3,7 +3,7 @@ import 'package:rxdart/rxdart.dart';
 
 import '../model/user_model.dart';
 
-class Userbloc {
+class UserBloc {
   final userFetch = PublishSubject<CollectionReference<UserModel>>();
 
   Stream<CollectionReference<UserModel>> get fetchUser => userFetch.stream;
@@ -24,4 +24,4 @@ class Userbloc {
   }
 }
 
-final userBloc = Userbloc();
+final userBloc = UserBloc();
