@@ -18,6 +18,8 @@ class TextFieldWidget extends StatefulWidget {
 }
 
 class _TextFieldWidgetState extends State<TextFieldWidget> {
+  bool _eye = true;
+
   @override
   Widget build(BuildContext context) {
     double h = Utils.getHeight(context);
@@ -40,8 +42,33 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       ),
       child: Center(
         child: TextField(
+          obscuringCharacter: '*',
+          obscureText: _eye,
+
           controller: widget.controller,
+          style: TextStyle(
+            fontFamily: AppColor.fontFamilyNunitoSans,
+            fontWeight: FontWeight.w600,
+            fontSize: 16 * h,
+            color: AppColor.dark,
+          ),
           decoration: InputDecoration(
+              suffixIcon: GestureDetector(
+                onTap: () {
+                  _eye = !_eye;
+                  setState(() {});
+                },
+                child: _eye
+                    ? const Icon(
+                  Icons.visibility_off,
+                  color: AppColor.blue,
+                )
+                    : const Icon(
+                  Icons.visibility,
+                  color: AppColor.blue,
+                ),
+              ),
+
               border: InputBorder.none,
               hintText: widget.hintText,
               hintStyle: TextStyle(

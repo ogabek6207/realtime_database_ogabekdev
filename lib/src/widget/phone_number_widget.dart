@@ -38,11 +38,25 @@ class _PhoneNumberWidgetState extends State<PhoneNumberWidget> {
           maxLength: 9,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           controller: widget.controller,
+          style: TextStyle(
+            fontFamily: AppColor.fontFamilyNunitoSans,
+            fontWeight: FontWeight.w600,
+            fontSize: 16 * h,
+            color: AppColor.dark,
+          ),
           decoration: InputDecoration(
             counterText: "",
-            prefix: const Padding(
-              padding: EdgeInsets.all(4),
-              child: Text('+998'),
+            prefix: Padding(
+              padding: EdgeInsets.all(4 * h),
+              child: Text(
+                '+998',
+                style: TextStyle(
+                  fontFamily: AppColor.fontFamilyNunitoSans,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16 * h,
+                  color: AppColor.dark,
+                ),
+              ),
             ),
             border: InputBorder.none,
             hintText: "Enter your phone number",
