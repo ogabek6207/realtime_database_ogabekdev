@@ -10,10 +10,14 @@ class AuthBloc {
   Stream<List<UserModel>> get fetchUser => userFetch.stream;
 
   allUsers() async {
-
     List<UserModel> users = await _userFireStore.getAllUser();
 
     userFetch.sink.add(users);
+  }
+  getUserProfile(String phone) async {
+    List<UserModel> user = await _userFireStore.getUserProfile(phone);
+
+    userFetch.sink.add(user);
   }
 
   Future<UserModel?> isNumber(String number, String password) async {

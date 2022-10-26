@@ -177,7 +177,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
     if (data == null) {
       authBloc.saveUser(
-        _controllerPhoneNumber.text,
+        "+998${_controllerPhoneNumber.text}",
         _controllerUserName.text,
         _controllerPassword.text,
         _controllerPasswordAgain.text,
@@ -195,6 +195,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         "Bu telefon raqam ro'yxatdan o'tgan",
         context,
       );
+      print("Error");
     }
   }
 }

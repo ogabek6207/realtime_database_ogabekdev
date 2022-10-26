@@ -16,6 +16,18 @@ class UserFireStore {
     }
     return data;
   }
+  Future<List<UserModel>> getUserProfile(String phone) async {
+    var users = await _firestore.where('phone', isEqualTo: phone).get();
+    List<UserModel> data = [];
+    for (int i = 0; i < users.size; i++) {
+      UserModel userModel = UserModel.fromJson(
+        users.docs[i].data(),
+      );
+      userModel.id = users.docs[i].id;
+      data.add(userModel);
+    }
+    return data;
+  }
 
   Future<List<UserModel>> getNumberUser(String number) async {
     QuerySnapshot users = await _firestore

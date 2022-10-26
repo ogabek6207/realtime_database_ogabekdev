@@ -8,6 +8,7 @@ import 'package:realtime_database_ogabekdev/src/model/user_model.dart';
 import 'package:realtime_database_ogabekdev/src/ui/auth/phone_number_screen.dart';
 import 'package:realtime_database_ogabekdev/src/ui/auth/sign_up_screen.dart';
 import 'package:realtime_database_ogabekdev/src/ui/home_screen/all_user_screen.dart';
+import 'package:realtime_database_ogabekdev/src/ui/main_screen.dart';
 import 'package:realtime_database_ogabekdev/src/utils/utils.dart';
 import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/label_widget.dart';
@@ -259,7 +260,7 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const AllUserScreen(),
+          builder: (context) => const MainScreen(),
         ),
       );
     }

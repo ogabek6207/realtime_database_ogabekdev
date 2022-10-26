@@ -26,7 +26,6 @@ class _AllUserScreenState extends State<AllUserScreen> {
       backgroundColor: AppColor.defaultColor,
       appBar: AppBar(
           elevation: 0,
-          actions: [],
           backgroundColor: AppColor.defaultColor,
           title: const AppBarTitleWidget("All User")),
       body: StreamBuilder<List<UserModel>>(
@@ -37,7 +36,6 @@ class _AllUserScreenState extends State<AllUserScreen> {
               child: Text(snapshot.error.toString()),
             );
           }
-
           if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
           }
