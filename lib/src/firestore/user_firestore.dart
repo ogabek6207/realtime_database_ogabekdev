@@ -17,6 +17,42 @@ class UserFireStore {
     return data;
   }
 
+  Future<List<UserModel>> getNumberUser(String number) async {
+    QuerySnapshot users = await _firestore
+        .where(
+          "phone",
+          isEqualTo: number,
+        )
+        .get();
+    List<UserModel> data = [];
+    for (int i = 0; i < users.size; i++) {
+      UserModel userModel = UserModel.fromJson(
+        users.docs[i].data() as Map<String, dynamic>,
+      );
+      userModel.id = users.docs[i].id;
+      data.add(userModel);
+    }
+    return data;
+  }
+
+  Future<List<UserModel>> getNumberOrder() async {
+    QuerySnapshot users = await _firestore
+        .orderBy(
+          "name",
+          descending: true,
+        )
+        .get();
+    List<UserModel> data = [];
+    for (int i = 0; i < users.size; i++) {
+      UserModel userModel = UserModel.fromJson(
+        users.docs[i].data() as Map<String, dynamic>,
+      );
+      userModel.id = users.docs[i].id;
+      data.add(userModel);
+    }
+    return data;
+  }
+
   Future<void> saveUser(UserModel data) async {
     await _firestore.add(data.toJson());
   }

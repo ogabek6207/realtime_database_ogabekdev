@@ -1,23 +1,19 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
 import 'package:realtime_database_ogabekdev/src/model/user_model.dart';
 import 'package:realtime_database_ogabekdev/src/ui/auth/login_screen.dart';
+import 'package:realtime_database_ogabekdev/src/ui/home_screen/all_user_screen.dart';
 import 'package:realtime_database_ogabekdev/src/utils/utils.dart';
 import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/label_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/phone_number_widget.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../bloc/auth_bloc.dart';
 import '../../dialog/center_dialog.dart';
 import '../../widget/textField_widget.dart';
 import '../../widget/user_name_widget.dart';
-import '../home_screen/all_user_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -162,7 +158,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
           DoneWidget(
             title: 'Sign Up',
             onTap: () {
-              _getRegister();
+              if (_controllerPassword.text == _controllerPasswordAgain.text &&
+                  _controllerUserName.text.length > 3) {
+                _getRegister();
+              }
             },
           ),
         ],
@@ -170,33 +169,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Future createUser(UserModel user) async {
-    final docUser =
-        FirebaseFirestore.instance.collection('users').doc(user.phone);
-    user.id = docUser.id;
-    await docUser.set(user.toJson());
-    if (kDebugMode) {
-      print("Done");
-    }
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("number", _controllerPhoneNumber.text);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const AllUserScreen(),
-      ),
-    );
-  }
-
   Future<void> _getRegister() async {
-    UserModel? data =
-        await authBloc.registerUser("+998${_controllerPhoneNumber.text}");
-    data == null
-        // ignore: use_build_context_synchronously
-        ? authBloc.saveUser(context, _controllerPhoneNumber.text,
-            _controllerUserName.text, _controllerPassword.text)
-        // ignore: use_build_context_synchronously
-        : CenterDialog.showDeleteDialog(
-            "Bu telefon raqam ro'yxatdan o'tgan", context);
+    UserModel? data = await authBloc.isNumber(
+      "+998${_controllerPhoneNumber.text}",
+      "",
+    );
+    if (data == null) {
+      authBloc.saveUser(
+        _controllerPhoneNumber.text,
+        _controllerUserName.text,
+        _controllerPassword.text,
+        _controllerPasswordAgain.text,
+      );
+      // ignore: use_build_context_synchronously
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const AllUserScreen(),
+        ),
+      );
+    } else {
+      // ignore: use_build_context_synchronously
+      CenterDialog.showDeleteDialog(
+        "Bu telefon raqam ro'yxatdan o'tgan",
+        context,
+      );
+    }
   }
 }

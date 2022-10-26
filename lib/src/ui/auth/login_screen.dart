@@ -242,23 +242,26 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _getLogin() async {
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    UserModel? data = await authBloc.loginUser(
-        "+998${_controllerPhone.text}", _controllerPassword.text);
-    data != null
-        // ignore: use_build_context_synchronously
-        ? {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const AllUserScreen(),
-              ),
-            ),
-            // prefs.setString("number", _controllerPhone.text),
-          }
-        // ignore: use_build_context_synchronously
-        : CenterDialog.showDeleteDialog(
-            "Telefon raqami yoki parol xato", context);
+    UserModel? data = await authBloc.isNumber(
+      "+998${_controllerPhone.text}",
+      _controllerPassword.text,
+    );
+    if (data == null) {
+      // ignore: use_build_context_synchronously
+      CenterDialog.showDeleteDialog(
+        "Telefon raqami yoki parol xato",
+        context,
+      );
+    } else {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString("number", "+998${_controllerPhone.text}");
+      // ignore: use_build_context_synchronously
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const AllUserScreen(),
+        ),
+      );
+    }
   }
 }
