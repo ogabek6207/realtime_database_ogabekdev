@@ -37,8 +37,13 @@ class _AllUserScreenState extends State<AllUserScreen> {
           List<QueryDocumentSnapshot<UserModel>> data1 = [];
           List<QueryDocumentSnapshot<UserModel>> data2 = [];
           final data = snapshot.data!;
-          data2 = data.docs;
 
+          data2 = data.docs;
+for(int i = 0; i<data2.length; i++){
+
+  // if(data2[i].data().phone == ){}
+
+}
 
           return ListView.builder(
             itemCount: data2.length,

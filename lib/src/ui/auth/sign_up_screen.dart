@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
 import 'package:realtime_database_ogabekdev/src/model/user_model.dart';
-import 'package:realtime_database_ogabekdev/src/ui/auth/home.dart';
 import 'package:realtime_database_ogabekdev/src/ui/auth/login_screen.dart';
 import 'package:realtime_database_ogabekdev/src/ui/home_screen/all_user_screen.dart';
 import 'package:realtime_database_ogabekdev/src/utils/utils.dart';
@@ -26,6 +24,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _controllerPhoneNumber = TextEditingController();
   final TextEditingController _controllerUserName = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
+  bool isNext = true;
 
   @override
   void initState() {
@@ -139,27 +138,53 @@ class _SignUpScreenState extends State<SignUpScreen> {
           SizedBox(
             height: 50 * h,
           ),
-          GestureDetector(
+          Container(
+            height: 1,
+            width: 1,
+            child: StreamBuilder<QuerySnapshot<UserModel>>(
+              stream: getUsers.snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Text(snapshot.error.toString()),
+                  );
+                }
+
+                if (!snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                List<QueryDocumentSnapshot<UserModel>> data1 = [];
+                List<QueryDocumentSnapshot<UserModel>> data2 = [];
+                final data = snapshot.data!;
+
+                data2 = data.docs;
+                for (int i = 0; i < data2.length; i++) {
+                  if (data2[i].data().phone ==
+                      "+998${_controllerPhoneNumber.text}") {
+                    isNext = false;
+                    print("Bu bazada raqam bor");
+                    break;
+                  }
+                }
+
+                return ListView.builder(
+                  itemCount: data2.length,
+                  itemBuilder: (context, index) {
+                    return Container();
+                  },
+                );
+              },
+            ),
+          ),
+          DoneWidget(
+            title: 'Sign Up',
             onTap: () {
               final user = UserModel(
                 phone: "+998${_controllerPhoneNumber.text}",
                 name: _controllerUserName.text,
                 password: _controllerPassword.text,
               );
-              createUser(user);
-
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AllUserScreen(
-                    password: _controllerUserName.text,
-                  ),
-                ),
-              );
             },
-            child: DoneWidget(
-              title: 'Sign Up',
-            ),
           ),
         ],
       ),
@@ -173,4 +198,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
     await docUser.set(user.toJson());
     print("Done");
   }
+
+  ///
+  final getUsers = FirebaseFirestore.instance
+      .collection('users')
+      .withConverter<UserModel>(
+        fromFirestore: (snapshots, _) => UserModel.fromJson(snapshots.data()!),
+        toFirestore: (movie, _) => movie.toJson(),
+      );
 }

@@ -26,7 +26,6 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: AppColor.defaultColor,
       appBar: AppBar(
@@ -99,6 +98,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                 },
                 child: DoneWidget(
                   title: "Submit",
+                  onTap: () {},
                 ),
               ),
             ],
@@ -145,7 +145,6 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
       },
       timeout: const Duration(seconds: 120),
     );
-
   }
 
   final getUsers = FirebaseFirestore.instance
