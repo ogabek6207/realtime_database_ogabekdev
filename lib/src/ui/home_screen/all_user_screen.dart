@@ -5,9 +5,9 @@ import 'package:realtime_database_ogabekdev/src/widget/appBar_title_widget.dart'
 import '../../model/user_model.dart';
 
 class AllUserScreen extends StatefulWidget {
- final String password;
-
-  const AllUserScreen({super.key, required this.password});
+  const AllUserScreen({
+    super.key,
+  });
 
   @override
   State<AllUserScreen> createState() => _AllUserScreenState();
@@ -38,11 +38,10 @@ class _AllUserScreenState extends State<AllUserScreen> {
           final data = snapshot.data!;
 
           data2 = data.docs;
-for(int i = 0; i<data2.length; i++){
+          for (int i = 0; i < data2.length; i++) {
+            // if(data2[i].data().phone == ){}
 
-  // if(data2[i].data().phone == ){}
-
-}
+          }
 
           return ListView.builder(
             itemCount: data2.length,

@@ -12,6 +12,7 @@ import 'package:realtime_database_ogabekdev/src/utils/utils.dart';
 import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/label_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/phone_number_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../widget/textField_widget.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -241,24 +242,23 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _getLogin() async {
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+
     UserModel? data = await authBloc.loginUser(
         "+998${_controllerPhone.text}", _controllerPassword.text);
     data != null
         // ignore: use_build_context_synchronously
-        ? Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AllUserScreen(
-                password: _controllerPassword.text,
+        ? {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AllUserScreen(),
               ),
             ),
-          )
+            // prefs.setString("number", _controllerPhone.text),
+          }
         // ignore: use_build_context_synchronously
-        : CenterDialog.showDeleteDialog(context);
-
-    print(authBloc.loginUser(
-      "+998${_controllerPhone.text}",
-      _controllerPassword.text,
-    ));
+        : CenterDialog.showDeleteDialog(
+            "Telefon raqami yoki parol xato", context);
   }
 }

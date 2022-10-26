@@ -6,6 +6,7 @@ import '../utils/utils.dart';
 
 class CenterDialog {
   static void showDeleteDialog(
+      String text,
     BuildContext context,
   ) {
     showDialog(
@@ -15,7 +16,7 @@ class CenterDialog {
           double w = Utils.getWidth(context);
           double o = (h + w) / 2;
           return CupertinoAlertDialog(
-            title: const Text("Telefon raqami yoki parol xato"),
+            title:  Text(text),
             actions: [
               GestureDetector(
                 onTap: () {
