@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:realtime_database_ogabekdev/src/bloc/auth_bloc.dart';
 import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
+import 'package:realtime_database_ogabekdev/src/dialog/center_dialog.dart';
 import 'package:realtime_database_ogabekdev/src/model/user_model.dart';
 import 'package:realtime_database_ogabekdev/src/ui/auth/phone_number_screen.dart';
 import 'package:realtime_database_ogabekdev/src/ui/auth/sign_up_screen.dart';
@@ -252,7 +253,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           )
-        : print("Error");
+        // ignore: use_build_context_synchronously
+        : CenterDialog.showDeleteDialog(context);
 
     print(authBloc.loginUser(
       "+998${_controllerPhone.text}",
