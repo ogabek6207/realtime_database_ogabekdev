@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         platform: TargetPlatform.iOS,
       ),
-      home:  const PhoneNumberScreen(),
+      home:  const SignUpScreen(),
       debugShowCheckedModeBanner: false,
       color: Colors.indigo[900],
     );

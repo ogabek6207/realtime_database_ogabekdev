@@ -37,13 +37,8 @@ class _AllUserScreenState extends State<AllUserScreen> {
           List<QueryDocumentSnapshot<UserModel>> data1 = [];
           List<QueryDocumentSnapshot<UserModel>> data2 = [];
           final data = snapshot.data!;
-          data1 = data.docs;
+          data2 = data.docs;
 
-          for (int i = 0; i < data1.length; i++) {
-            if (widget.password == data.docs[i].data().password) {
-              data2.add(data1[i]);
-            }
-          }
 
           return ListView.builder(
             itemCount: data2.length,
