@@ -52,6 +52,20 @@ class AuthBloc {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString("number", phone);
   }
+
+
+
+
+  updateUser(
+UserModel user
+      ) async {
+    await _userFireStore.updateUser(
+   user
+    );
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // prefs.setString("number", phone);
+  }
+
 }
 
 final authBloc = AuthBloc();

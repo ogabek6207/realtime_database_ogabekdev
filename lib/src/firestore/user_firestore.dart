@@ -16,6 +16,7 @@ class UserFireStore {
     }
     return data;
   }
+
   Future<List<UserModel>> getUserProfile(String phone) async {
     var users = await _firestore.where('phone', isEqualTo: phone).get();
     List<UserModel> data = [];
@@ -74,6 +75,8 @@ class UserFireStore {
   }
 
   Future<void> updateUser(UserModel data) async {
+
     await _firestore.doc(data.id).update(data.toJson());
+
   }
 }

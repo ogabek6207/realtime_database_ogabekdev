@@ -19,7 +19,7 @@ class UserNameWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(
           left: 20 * w, right: 20 * w, top: 6 * h, bottom: 6 * h),
-      margin: EdgeInsets.only(top: 16 * h),
+      margin: EdgeInsets.only(top: 16 * h, left: 25*w, right: 25*w),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
