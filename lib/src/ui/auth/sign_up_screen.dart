@@ -12,6 +12,7 @@ import 'package:realtime_database_ogabekdev/src/widget/label_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/phone_number_widget.dart';
 
 import '../../widget/textField_widget.dart';
+import '../../widget/user_name_widget.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -24,6 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _controllerPhoneNumber = TextEditingController();
   final TextEditingController _controllerUserName = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
+  final TextEditingController _controllerPasswordAgain = TextEditingController();
   bool isNext = true;
 
   @override
@@ -123,7 +125,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           const LabelWidget(
             title: "UserName",
           ),
-          TextFieldWidget(
+          UserNameWidget(
             hintText: 'Create your username',
             controller: _controllerUserName,
           ),
@@ -136,6 +138,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
           TextFieldWidget(
             hintText: 'Create your password',
             controller: _controllerPassword,
+          ),
+          SizedBox(
+            height: 36 * h,
+          ),
+          const LabelWidget(
+            title: "Password Again",
+          ),
+          TextFieldWidget(
+            hintText: 'Create enter your password',
+            controller: _controllerPasswordAgain,
           ),
           SizedBox(
             height: 50 * h,
