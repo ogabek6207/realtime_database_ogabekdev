@@ -12,9 +12,9 @@ import '../../../../widget/textField_widget.dart';
 import '../../../../widget/user_name_widget.dart';
 
 class ProfileUpdateScreen extends StatefulWidget {
-  UserModel data;
+  final UserModel data;
 
-  ProfileUpdateScreen({required this.data});
+  const ProfileUpdateScreen({super.key, required this.data});
 
   @override
   State<ProfileUpdateScreen> createState() => _ProfileUpdateScreenState();
@@ -26,13 +26,15 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
   final TextEditingController _controllerPassword = TextEditingController();
   final TextEditingController _controllerPasswordAgain =
       TextEditingController();
+  UserModel json = UserModel.fromJson({});
 
   @override
   void initState() {
     _controllerUserName.text = widget.data.name;
     _controllerPhone.text = widget.data.phone;
     _controllerPassword.text = widget.data.password;
-    _controllerPasswordAgain.text = widget.data.password;
+    json = widget.data;
+
     super.initState();
   }
 
@@ -52,7 +54,6 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: AppColor.white,
         elevation: 1,
-
         title: const AppBarTitleWidget("Profile Update"),
       ),
       body: Column(
@@ -127,14 +128,24 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
           ),
           DoneWidget(
             title: "Update",
-            onTap: () {},
+            onTap: () {
+              if (_controllerUserName.text.isNotEmpty) {
+                json.name = _controllerUserName.text;
+                json.password = _controllerPassword.text;
+                authBloc.updateUser(json);
+                Navigator.pop(context);
+              }
+            },
+          ),
+          SizedBox(
+            height: 25 * h,
           ),
         ],
       ),
     );
   }
 
-  Widget buildUser(UserModel user) => ListTile(
+    Widget buildUser(UserModel user) => ListTile(
         title: Text(user.phone),
         subtitle: Text(user.password),
       );

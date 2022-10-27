@@ -4,7 +4,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthBloc {
-  final _userFireStore = UserFireStore();
+  final UserFireStore _userFireStore = UserFireStore();
   final userFetch = PublishSubject<List<UserModel>>();
 
   Stream<List<UserModel>> get fetchUser => userFetch.stream;
@@ -14,6 +14,7 @@ class AuthBloc {
 
     userFetch.sink.add(users);
   }
+
   getUserProfile(String phone) async {
     List<UserModel> user = await _userFireStore.getUserProfile(phone);
 
@@ -53,19 +54,9 @@ class AuthBloc {
     prefs.setString("number", phone);
   }
 
-
-
-
-  updateUser(
-UserModel user
-      ) async {
-    await _userFireStore.updateUser(
-   user
-    );
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // prefs.setString("number", phone);
+  updateUser(UserModel data) async {
+    await _userFireStore.updateUser(data);
   }
-
 }
 
 final authBloc = AuthBloc();
