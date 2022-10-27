@@ -3,24 +3,24 @@ import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
 import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/leading_widget.dart';
 
-import '../bloc/auth_bloc.dart';
-import '../model/user_model.dart';
-import '../utils/utils.dart';
-import '../widget/label_widget.dart';
-import '../widget/phone_number_widget.dart';
-import '../widget/textField_widget.dart';
-import '../widget/user_name_widget.dart';
+import '../../../../bloc/auth_bloc.dart';
+import '../../../../model/user_model.dart';
+import '../../../../utils/utils.dart';
+import '../../../../widget/label_widget.dart';
+import '../../../../widget/phone_number_widget.dart';
+import '../../../../widget/textField_widget.dart';
+import '../../../../widget/user_name_widget.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class ProfileUpdateScreen extends StatefulWidget {
+  const ProfileUpdateScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<ProfileUpdateScreen> createState() => _ProfileUpdateScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
   List<UserModel>? userModel;
-   TextEditingController _controllerPhone = TextEditingController();
+  final TextEditingController _controllerPhone = TextEditingController();
   final TextEditingController _controllerUserName = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
   final TextEditingController _controllerPasswordAgain =
@@ -119,7 +119,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ],
                       );
                     }
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
                   },
                 ),
               ],
@@ -127,9 +129,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           DoneWidget(
             title: "Update",
-            onTap: () {
-
-            },
+            onTap: () {},
           ),
         ],
       ),

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:realtime_database_ogabekdev/src/ui/home_screen/all_user_screen.dart';
+import 'package:realtime_database_ogabekdev/src/ui/menu/profile/profile_screen.dart';
 import '../color/app_color.dart';
 import '../utils/utils.dart';
-import 'profile_screen.dart';
+import 'menu/profile/profile_update_screen/profile_update_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
