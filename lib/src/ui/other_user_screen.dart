@@ -1,69 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
-import 'package:realtime_database_ogabekdev/src/ui/menu/profile/profile_update_screen/profile_update_screen.dart';
-import 'package:realtime_database_ogabekdev/src/widget/appBar_title_widget.dart';
-import '../../../bloc/auth_bloc.dart';
-import '../../../model/user_model.dart';
-import '../../../utils/utils.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+import '../color/app_color.dart';
+import '../utils/utils.dart';
+import '../widget/appBar_title_widget.dart';
+import '../widget/leading_widget.dart';
+
+class OtherScreen extends StatefulWidget {
+  const OtherScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<OtherScreen> createState() => _OtherScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
-  List<UserModel>? userModel;
-
-  @override
-  void initState() {
-    authBloc.getUserProfile('909166207');
-
-    super.initState();
-  }
-
+class _OtherScreenState extends State<OtherScreen> {
   @override
   Widget build(BuildContext context) {
     double h = Utils.getHeight(context);
     double w = Utils.getWidth(context);
-
     return Scaffold(
       appBar: AppBar(
-        title: const AppBarTitleWidget("Profile"),
-        actions: [
-          StreamBuilder<List<UserModel>>(
-            stream: authBloc.fetchUser,
-            builder: (context, AsyncSnapshot<List<UserModel>> snapshot) {
-              if (snapshot.hasData || userModel != null) {
-                if (snapshot.hasData) {
-                  userModel = snapshot.data!;
-                }
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProfileUpdateScreen(
-                          data: userModel!.first,
-                        ),
-                      ),
-                    );
-                  },
-                  child: SvgPicture.asset("assets/icons/settings.svg"),
-                );
-              }
-              return Container();
-            },
-          ),
-          SizedBox(
-            width: 25 * w,
-          ),
-        ],
+        leading: const LeadingWidget(),
         centerTitle: false,
         elevation: 0,
         backgroundColor: AppColor.white,
+        title: const AppBarTitleWidget("Profile"),
       ),
       body: ListView(
         padding: EdgeInsets.only(
@@ -84,7 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Stack(
                   children: [
                     Image.asset(
-                      "assets/images/image.png",
+                      "assets/images/user2.png",
                       fit: BoxFit.cover,
                     ),
                   ],
@@ -98,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "Wendy Edwards",
+                    "Ramsay Michael Snow",
                     style: TextStyle(
                       fontFamily: AppColor.fontFamilyNunitoSans,
                       fontWeight: FontWeight.w700,
@@ -107,7 +68,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   Text(
-                    "@wendy10edwards",
+                    "@michaelrsnow",
                     style: TextStyle(
                       fontFamily: AppColor.fontFamilyNunitoSans,
                       fontWeight: FontWeight.w600,
@@ -128,6 +89,55 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                 ],
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 30 * h,
+          ),
+          Row(
+            children: [
+              Container(
+                height: 58 * h,
+                width: 92 * w,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 2,
+                    color: AppColor.blue,
+                  ),
+                  borderRadius: BorderRadius.circular(30 * h),
+                ),
+                child: Center(
+                  child: SvgPicture.asset("assets/icons/message_circle.svg"),
+                ),
+              ),
+              SizedBox(
+                width: 25 * w,
+              ),
+              
+              Expanded(
+                child: Container(
+                  height: 58 * h,
+                  decoration: BoxDecoration(
+                    color: AppColor.blue,
+                    border: Border.all(
+                      width: 2,
+                      color: AppColor.blue,
+                    ),
+                    borderRadius: BorderRadius.circular(30 * h),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Follow",
+                      style: TextStyle(
+                        fontFamily: AppColor.fontFamilyNunitoSans,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 18 * h,
+                        color: AppColor.white,
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

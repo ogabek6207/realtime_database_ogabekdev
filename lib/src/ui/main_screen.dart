@@ -5,6 +5,7 @@ import 'package:realtime_database_ogabekdev/src/ui/menu/profile/profile_screen.d
 import '../color/app_color.dart';
 import '../utils/utils.dart';
 import 'menu/profile/profile_update_screen/profile_update_screen.dart';
+import 'other_user_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -38,7 +39,7 @@ class _MainScreenState extends State<MainScreen>
           AllUserScreen(),
           AllUserScreen(),
           AllUserScreen(),
-          AllUserScreen(),
+          OtherScreen(),
           ProfileScreen()
 
         ],
