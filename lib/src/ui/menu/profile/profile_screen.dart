@@ -77,7 +77,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 height: 86 * h,
                 width: 86 * h,
                 child: Stack(
@@ -127,6 +127,136 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                 ],
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 36 * h,
+          ),
+          Container(
+            height: 92 * h,
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 30 * w,
+                ),
+                Column(
+                  children: [
+                    Text(
+                      "890",
+                      style: TextStyle(
+                        fontFamily: AppColor.fontFamilyNunitoSans,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20 * h,
+                        color: AppColor.dark,
+                      ),
+                    ),
+                    Text(
+                      "Likes",
+                      style: TextStyle(
+                        fontFamily: AppColor.fontFamilyNunitoSans,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14 * h,
+                        color: AppColor.dark.withOpacity(0.8),
+                      ),
+                    ),
+                  ],
+                ),
+                Spacer(),
+                Column(
+                  children: [
+                    Text(
+                      "1293",
+                      style: TextStyle(
+                        fontFamily: AppColor.fontFamilyNunitoSans,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20 * h,
+                        color: AppColor.dark,
+                      ),
+                    ),
+                    Text(
+                      "Followers",
+                      style: TextStyle(
+                        fontFamily: AppColor.fontFamilyNunitoSans,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14 * h,
+                        color: AppColor.dark.withOpacity(0.8),
+                      ),
+                    ),
+                  ],
+                ),
+                Spacer(),
+                Column(
+                  children: [
+                    Text(
+                      "1436",
+                      style: TextStyle(
+                        fontFamily: AppColor.fontFamilyNunitoSans,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20 * h,
+                        color: AppColor.dark,
+                      ),
+                    ),
+                    Text(
+                      "Following",
+                      style: TextStyle(
+                        fontFamily: AppColor.fontFamilyNunitoSans,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14 * h,
+                        color: AppColor.dark.withOpacity(0.8),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 30 * w,
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 30 * h,
+          ),
+          Row(
+            children: [
+              Container(
+                height: 150 * h,
+                width: 150 * h,
+                child: Image.asset(
+                  "assets/images/posts1.png",
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Spacer(),
+              Container(
+                height: 150 * h,
+                width: 150 * h,
+                child: Image.asset(
+                  "assets/images/posts2.png",
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 25*h,),
+          Row(
+            children: [
+              Container(
+                height: 150 * h,
+                width: 150 * h,
+                child: Image.asset(
+                  "assets/images/posts3.png",
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Spacer(),
+              Container(
+                height: 150 * h,
+                width: 150 * h,
+                child: Image.asset(
+                  "assets/images/posts4.png",
+                  fit: BoxFit.cover,
+                ),
               ),
             ],
           ),
