@@ -20,7 +20,7 @@ class _AppBarTitleWidgetState extends State<AppBarTitleWidget> {
       style: TextStyle(
         fontFamily: AppColor.fontFamilyNunitoSans,
         fontWeight: FontWeight.w700,
-        fontSize: 18 * h,
+        fontSize: 28 * h,
         color: AppColor.dark,
       ),
     );
