@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
+import 'package:realtime_database_ogabekdev/src/widget/appBar_title_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';
+import 'package:realtime_database_ogabekdev/src/widget/leading_widget.dart';
 import '../../../../bloc/auth_bloc.dart';
 import '../../../../model/user_model.dart';
 import '../../../../utils/utils.dart';
@@ -29,7 +31,8 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
   void initState() {
     _controllerUserName.text = widget.data.name;
     _controllerPhone.text = widget.data.phone;
-_controllerPassword.text = widget.data.password;
+    _controllerPassword.text = widget.data.password;
+    _controllerPasswordAgain.text = widget.data.password;
     super.initState();
   }
 
@@ -38,11 +41,19 @@ _controllerPassword.text = widget.data.password;
     double h = Utils.getHeight(context);
     double w = Utils.getWidth(context);
     return Scaffold(
-      backgroundColor: AppColor.defaultColor,
       appBar: AppBar(
+        centerTitle: false,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const LeadingWidget(),
+        ),
         automaticallyImplyLeading: false,
-        backgroundColor: AppColor.defaultColor,
+        backgroundColor: AppColor.white,
         elevation: 1,
+
+        title: const AppBarTitleWidget("Profile Update"),
       ),
       body: Column(
         children: [
