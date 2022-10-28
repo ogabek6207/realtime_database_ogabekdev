@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
+import 'package:realtime_database_ogabekdev/src/widget/post_widget.dart';
 import '../../utils/utils.dart';
 import '../../widget/appBar_title_widget.dart';
 
@@ -22,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: false,
         backgroundColor: AppColor.white,
         elevation: 0,
-        title: AppBarTitleWidget("Home"),
+        title: const AppBarTitleWidget("Home"),
         actions: [
           Center(
             child: SvgPicture.asset("assets/icons/bell.svg"),
@@ -32,33 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: Center(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "WEBFUN",
-                style: TextStyle(
-                  color: Colors.indigo[900],
-                  fontSize: 50,
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Logout",
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 30,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+      body: ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) => const PostWidget(),
       ),
     );
   }

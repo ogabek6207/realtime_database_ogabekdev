@@ -39,7 +39,6 @@ class _MainScreenState extends State<MainScreen>
         controller: _tabController,
         children: [
           HomeScreen(),
-          // HomeScreen(),
           ExploreScreen(),
           AllUserScreen(),
           OtherScreen(),
