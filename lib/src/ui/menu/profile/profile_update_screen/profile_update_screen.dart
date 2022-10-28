@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
+import 'package:realtime_database_ogabekdev/src/dialog/gender_choose_dialog.dart';
 import 'package:realtime_database_ogabekdev/src/widget/appBar_title_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/done_widget.dart';
 import 'package:realtime_database_ogabekdev/src/widget/leading_widget.dart';
@@ -24,8 +25,7 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
   final TextEditingController _controllerPhone = TextEditingController();
   final TextEditingController _controllerUserName = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
-  final TextEditingController _controllerPasswordAgain =
-      TextEditingController();
+  final TextEditingController _controllerBio = TextEditingController();
   UserModel json = UserModel.fromJson({});
 
   @override
@@ -110,13 +110,63 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                     Row(
                       children: const [
                         LabelWidget(
-                          title: "Password Again",
+                          title: "Change Bio",
                         ),
                       ],
                     ),
-                    TextFieldWidget(
-                      hintText: 'Create enter your password',
-                      controller: _controllerPasswordAgain,
+                    UserNameWidget(
+                      hintText: 'Create enter your bio',
+                      controller: _controllerBio,
+                    ),
+                    SizedBox(
+                      height: 36 * h,
+                    ),
+                    Row(
+                      children: const [
+                        LabelWidget(
+                          title: "Choose Gender",
+                        ),
+                      ],
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        GenderChooseDialog.genderChoose(context, "Erkak");
+                      },
+                      child: Container(
+                        padding: EdgeInsets.only(
+                            left: 20 * w,
+                            right: 20 * w,
+                            top: 20 * h,
+                            bottom: 20 * h),
+                        margin: EdgeInsets.only(
+                            top: 16 * h, left: 25 * w, right: 25 * w),
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              spreadRadius: 0,
+                              blurRadius: 75,
+                              offset: Offset(0, 10 * w),
+                              color: AppColor.drop.withOpacity(0.1),
+                            )
+                          ],
+                          color: AppColor.white,
+                          borderRadius: BorderRadius.circular(28 * h),
+                        ),
+                        child: Center(
+                          child: Row(
+                            children: [
+                              Text(
+                                "Erkak",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  fontSize: 16 * h,
+                                  color: AppColor.dark,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                     SizedBox(
                       height: 50 * h,
@@ -145,7 +195,7 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
     );
   }
 
-    Widget buildUser(UserModel user) => ListTile(
+  Widget buildUser(UserModel user) => ListTile(
         title: Text(user.phone),
         subtitle: Text(user.password),
       );

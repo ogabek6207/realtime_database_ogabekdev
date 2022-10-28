@@ -46,7 +46,7 @@ class EditProfile {
                         margin: EdgeInsets.only(top: 42 * h),
                         child: Center(
                           child: Text(
-                            "change",
+                            "change image",
                             style: TextStyle(
                               fontSize: 18 * h,
                               color: AppColor.dark,
