@@ -57,7 +57,6 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
           MaterialButton(
             color: Colors.indigo[900],
             onPressed: () {
-              setTask(_controllerTitle.text, _controllerSubtitle.text);
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
@@ -78,13 +77,4 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
     );
   }
 
-  Future<void> setTask(String title, subTitle) async {
-    var rng = Random();
-    var k = rng.nextInt(10000);
-    final ref = fb.ref().child('todos/$k');
-    ref.set({
-      "title": title,
-      "subtitle": subTitle,
-    }).asStream();
-  }
 }

@@ -1,6 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
 import 'package:realtime_database_ogabekdev/src/ui/auth/phone_number_screen.dart';
+import 'package:realtime_database_ogabekdev/src/widget/leading_widget.dart';
+
+import '../../utils/utils.dart';
+import '../../widget/appBar_title_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,20 +17,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String uid = "";
-
-  @override
-  void initState() {
-    uid = FirebaseAuth.instance.currentUser!.uid;
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    double h = Utils.getHeight(context);
+    double w = Utils.getWidth(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.indigo[900],
-        title: const Text('Home'),
+        centerTitle: false,
+        backgroundColor: AppColor.white,
+        elevation: 0,
+        title: AppBarTitleWidget("Home"),
+        actions: [
+          Center(child: SvgPicture.asset("assets/icons/bell.svg"),),
+          SizedBox(width: 25*w,),
+        ],
       ),
       body: Center(
         child: Center(
@@ -48,19 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: 30,
                     ),
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.logout),
-                    onPressed: () async {
-                      await FirebaseAuth.instance.signOut();
-                      // ignore: use_build_context_synchronously
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const PhoneNumberScreen(),
-                        ),
-                      );
-                    },
-                  ),
+
                 ],
               ),
             ],

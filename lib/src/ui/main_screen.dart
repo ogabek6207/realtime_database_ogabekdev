@@ -4,6 +4,7 @@ import 'package:realtime_database_ogabekdev/src/ui/home_screen/all_user_screen.d
 import 'package:realtime_database_ogabekdev/src/ui/menu/profile/profile_screen.dart';
 import '../color/app_color.dart';
 import '../utils/utils.dart';
+import 'auth/home.dart';
 import 'menu/profile/profile_update_screen/profile_update_screen.dart';
 import 'other_user_screen.dart';
 
@@ -36,12 +37,11 @@ class _MainScreenState extends State<MainScreen>
       body: TabBarView(
         controller: _tabController,
         children: [
-          AllUserScreen(),
+          HomeScreen(),
           AllUserScreen(),
           AllUserScreen(),
           OtherScreen(),
           ProfileScreen()
-
         ],
       ),
       bottomNavigationBar: Material(

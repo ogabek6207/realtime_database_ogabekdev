@@ -114,7 +114,6 @@ class _OtherScreenState extends State<OtherScreen> {
               SizedBox(
                 width: 25 * w,
               ),
-              
               Expanded(
                 child: Container(
                   height: 58 * h,
