@@ -5,6 +5,7 @@ import 'package:realtime_database_ogabekdev/src/ui/menu/profile/profile_screen.d
 import '../color/app_color.dart';
 import '../utils/utils.dart';
 import 'auth/home.dart';
+import 'menu/explore/explore_screen.dart';
 import 'menu/profile/profile_update_screen/profile_update_screen.dart';
 import 'other_user_screen.dart';
 
@@ -38,7 +39,8 @@ class _MainScreenState extends State<MainScreen>
         controller: _tabController,
         children: [
           HomeScreen(),
-          AllUserScreen(),
+          // HomeScreen(),
+          ExploreScreen(),
           AllUserScreen(),
           OtherScreen(),
           ProfileScreen()
