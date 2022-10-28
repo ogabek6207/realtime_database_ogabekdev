@@ -2,9 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:realtime_database_ogabekdev/src/color/app_color.dart';
-import 'package:realtime_database_ogabekdev/src/ui/auth/phone_number_screen.dart';
-import 'package:realtime_database_ogabekdev/src/widget/leading_widget.dart';
-
 import '../../utils/utils.dart';
 import '../../widget/appBar_title_widget.dart';
 
@@ -28,8 +25,12 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         title: AppBarTitleWidget("Home"),
         actions: [
-          Center(child: SvgPicture.asset("assets/icons/bell.svg"),),
-          SizedBox(width: 25*w,),
+          Center(
+            child: SvgPicture.asset("assets/icons/bell.svg"),
+          ),
+          SizedBox(
+            width: 25 * w,
+          ),
         ],
       ),
       body: Center(
@@ -54,7 +55,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: 30,
                     ),
                   ),
-
                 ],
               ),
             ],

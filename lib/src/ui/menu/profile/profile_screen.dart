@@ -6,6 +6,7 @@ import 'package:realtime_database_ogabekdev/src/widget/appBar_title_widget.dart'
 import '../../../bloc/auth_bloc.dart';
 import '../../../model/user_model.dart';
 import '../../../utils/utils.dart';
+import 'edit_profile_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -78,16 +79,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 86 * h,
-                width: 86 * h,
-                child: Stack(
-                  children: [
-                    Image.asset(
-                      "assets/images/image.png",
-                      fit: BoxFit.cover,
-                    ),
-                  ],
+              GestureDetector(
+                onTap: () {
+                  EditProfile.showEditProfile(
+                    context,
+                  );
+                },
+                child: SizedBox(
+                  height: 86 * h,
+                  width: 86 * h,
+                  child: Stack(
+                    children: [
+                      Image.asset(
+                        "assets/images/image.png",
+                        fit: BoxFit.cover,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(

@@ -16,6 +16,8 @@ class AppColor {
   static const Color shadow = Color(0xFF645757);
   static const Color defaultColor = Color(0xFFE5E5E5);
   static const Color darkGrey = Color(0xFF616161);
+  static const Color dialog = Color(0xFFF8F9FA);
+
 
 
   ///fonts
